@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>cmd.exe - Birthday Wish</title>
+  <style>
+    body {
+      background-color: black;
+      color: #00ff00;
+      font-family: 'Courier New', Courier, monospace;
+      padding: 20px;
+    }
+
+    .terminal {
+      white-space: pre-wrap;
+      overflow: hidden;
+      font-size: 16px;
+    }
+
+    .blinking-cursor {
+      display: inline-block;
+      width: 10px;
+      background: #00ff00;
+      animation: blink 1s step-start infinite;
+    }
+
+    @keyframes blink {
+      50% { background: transparent; }
+    }
+  </style>
+</head>
+<body>
+  <div class="terminal" id="terminal"></div>
+  <script>
+    const lines = [
+      "C:\\Users\\You> loading_birthday_wish.exe",
+      "Initializing...",
+      "Connecting to your heart...",
+      "Connection successful.",
+      "Compiling feelings...",
+      "100% complete.",
+      "",
+      "Dear Love,",
+      "Wishing you the happiest 19th birthday ever 🎉🎂",
+      "You're the most amazing person in my life.",
+      "May your day be as beautiful and special as you are.",
+      "I love you more than words can express.",
+      "",
+      "❤️ Forever Yours ❤️",
+      "",
+  "    ***       ***    ",
+  " *******   *******   ",
+  "********* *********  ",
+  "*******************  ",
+  " *****************   ",
+  "  ***************    ",
+  "   *************     ",
+  "    ***********      ",
+  "     *********       ",
+  "      *******        ",
+  "       *****         ",
+  "        ***          ",
+  "         *           ",
+  "",
+  "  _  __ ___ _____ _____ __     __",
+  " | |/ /|_ _|_   _|_   _|\\ \\   / /",
+  " | ' /  | |  | |   | |   \\ \\_/ / ",
+  " |  <   | |  | |   | |    \\   /  ",
+  " | . \\ |___| |_|   |_|     | |   ",
+  " |_|\\_\\_____|_____|____|   |_|   ",
+  "",
+  "C:\\Users\\You> _"
+    ];
+
+    const terminal = document.getElementById("terminal");
+    let lineIndex = 0;
+    let charIndex = 0;
+    let currentLine = "";
+    let cursor = '<span class="blinking-cursor">&nbsp;</span>';
+
+    function typeChar() {
+      if (lineIndex >= lines.length) {
+        terminal.innerHTML += cursor;
+        return;
+      }
+
+      if (charIndex < lines[lineIndex].length) {
+        currentLine += lines[lineIndex][charIndex];
+        terminal.innerHTML = terminal.innerHTML.replace(cursor, "") + lines[lineIndex][charIndex] + cursor;
+        charIndex++;
+        setTimeout(typeChar, 40); // Typing speed per character
+      } else {
+        terminal.innerHTML = terminal.innerHTML.replace(cursor, "") + "\n" + cursor;
+        currentLine = "";
+        charIndex = 0;
+        lineIndex++;
+        setTimeout(typeChar, 400); // Pause between lines
+      }
+    }
+
+    typeChar();
+  </script>
+</body>
+</html>
